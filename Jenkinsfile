@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/ram9711/spring-boot-app.git'
+                git branch: 'main', url: 'https://github.com/ram9711/spring-boot-app.git'
             }
         }
         stage('Build') {
