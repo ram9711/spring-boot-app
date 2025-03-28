@@ -28,8 +28,14 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying application...'
-            }
+                script {
+                    sh """
+                    cp target/*.jar /home/ec2-user/app.jar
+                    nohup java -jar /home/ec2-user/app.jar > app.log 2>&1 &
+                    """
+                }
+           echo 'Deployed Successfully!'
+           }
         }
     }
 }
