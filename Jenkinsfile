@@ -31,10 +31,10 @@ pipeline {
                 script {
                     sh """
                     cp target/*.jar /home/ec2-user/app.jar
-                    nohup java -jar /home/ec2-user/app.jar > app.log 2>&1 &
+                    nohup java -jar /home/ec2-user/app.jar --server.port=8081 > app.log 2>&1 &
                     """
                 }
-           echo 'Deployed Successfully!'
+                echo 'Deployed Successfully!'
            }
         }
     }
