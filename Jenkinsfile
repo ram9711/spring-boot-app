@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    sudo -u ec2-user nohup java -jar /home/ec2-user/app.jar --server.port=8081 > app.log 2>&1 &
+                    sudo nohup java -jar /home/ec2-user/app.jar --server.port=8081 > app.log 2>&1 &
                     """
                 }
                 echo 'Deployed Successfully!'
