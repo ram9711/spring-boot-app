@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        SONAR_TOKEN = credentials('sonar-token') // Store token in Jenkins credentials
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -13,7 +16,14 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh './mvnw test'
+                sh 'mvn test'
+                sh """
+                    mvn sonar:sonar \
+                      -Dsonar.projectKey=ram9711_spring-boot-app \
+                      -Dsonar.organization=ram9711 \
+                      -Dsonar.host.url=https://sonarcloud.io \
+                      -Dsonar.login=$SONAR_TOKEN
+                """
             }
         }
         stage('Deploy') {
