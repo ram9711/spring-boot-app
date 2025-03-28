@@ -30,8 +30,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    sudo cp /home/ec2-user/spring-boot-app/target/demo-0.0.1-SNAPSHOT.jar /home/ec2-user/app.jar
-                    sudo nohup java -jar /home/ec2-user/app.jar --server.port=8081 > app.log 2>&1 &
+                    nohup java -jar /home/ec2-user/app.jar --server.port=8081 > app.log 2>&1 &
                     """
                 }
                 echo 'Deployed Successfully!'
